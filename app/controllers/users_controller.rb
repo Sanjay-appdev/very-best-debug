@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def index
+  def all_users
     matching_users = User.all
     @users = matching_users.order(:created_at)
 
@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    username = params.fetch("username")
-    matching_users = User.where({ :username => username })
+    user_name = params.fetch("username")
+    matching_users = User.where({ :username => user_name })
     @user = matching_users.at(0)
 
     render({ :template => "user_templates/user_details.html.erb"})

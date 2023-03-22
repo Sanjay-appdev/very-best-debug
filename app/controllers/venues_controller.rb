@@ -10,13 +10,13 @@ class VenuesController < ApplicationController
   def show
     venue_id = params.fetch("venue_id")
     matching_venues = Venue.where({ :id => venue_id })
-    the_venue = matching_venues
+    @the_venue = matching_venues
 
     render({ :template => "venue_templates/details.html.erb" })
   end
 
   def create
-    venue = Venue.new
+    @venue = Venue.new
     venue.address = params.fetch("query_username")
     venue.name = params.fetch("name")
     venue.neighborhood = params.fetch("neighborhood")
